@@ -28,12 +28,14 @@ def predict():
         else:
             Gender_M=0
             Gender_F=1
-        prediction=model.predict([[Vata,Pitta,Kapha,Age,Gender_M,Gender_F]])
+        prediction=model.predict([[Gender_M,Gender_F,Vata,Pitta,Kapha,Age]])
         output=round(prediction[0],1)
         if output<0:
-            return render_template('index.html',prediction_texts="Sorry we cant predict your health")
+            return render_template('index.html',prediction_text="Sorry we cant predict your health")
         else:
-            return render_template('index.html',prediction_text="Your vata is {}".format(output))
+            return render_template('index.html',prediction_text="Your vata,Kapha, and pitta values are {}{}{}".format(output,output,output))
+            
+                   
     else:
         return render_template('index.html')
 
